@@ -1,0 +1,19 @@
+.add-products-input{
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  width: 100%;
+  color: #747373;
+}
+.submit-product {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(to right, #0f9d58, #4285f4);
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}

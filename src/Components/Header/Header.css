@@ -1,0 +1,115 @@
+.header {
+    /* display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: #f4f6f8;
+    border-bottom: 1px solid #ddd; */
+    /* position: fixed; */
+}
+
+.header-head {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: #f4f6f8;
+    border-bottom: 1px solid #ddd;
+
+}
+
+.header-left h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.header-left p {
+    margin: 5px 0 0;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.timestamp {
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.add-user {
+    font-size: 0.9rem;
+    color: #333;
+
+}
+
+.notification-btn {
+    background: none;
+    border: none;
+    position: relative;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.notification-badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: red;
+    color: white;
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 50%;
+}
+
+.user-avatar {
+    background: linear-gradient(135deg, #00a54f 0%, #2e368e 100%);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.logout-btn {
+    background: linear-gradient(135deg, #00a54f 0%, #2e368e 100%);
+    border: none;
+    padding: 8px 12px;
+    margin-left: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: none;
+    color: white;
+}
+
+.logout-btn:hover {
+    background: linear-gradient(135deg, #00a54f 0%, #2e368e 100%);
+}
+.profile-main{
+    margin-top: 10px;
+    justify-content: center;
+}
+.profile-main-role{
+    font-size: 0.9rem;
+    color: #333;
+    font-weight: 500;
+}
+
+@media (max-width:768px) {
+    .logout-btn {
+
+        display: block;
+
+    }
+    .header-head{
+        display: block;
+    }
+
+ 
+
+}

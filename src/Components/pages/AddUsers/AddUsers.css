@@ -1,0 +1,327 @@
+    .header-adduser {
+        margin-bottom: 2rem;
+    }
+
+    .header-content-1 {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .main-title {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #1f2937;
+        margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+        color: #6b7280;
+        font-size: 1rem;
+    }
+
+    .add-user-btn {
+        background: #2563eb;
+        color: white;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.5rem;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        min-width: 120px;
+        justify-content: center;
+    }
+
+    .add-user-btn:hover {
+        background: #1d4ed8;
+    }
+
+    /* User List Card */
+    .user-list-card {
+        background: white;
+        border-radius: 0.75rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+
+    .card-header {
+        background: linear-gradient(135deg, #22c55e 0%, #2563eb 100%);
+        padding: 1.5rem;
+    }
+
+    .card-title {
+        color: white;
+        font-size: 1.25rem;
+        font-weight: 600;
+    }
+
+    /* Desktop Table Styles */
+    .desktop-table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    .user-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .user-table thead {
+        background-color: #f9fafb;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    .user-table th {
+        padding: 1rem 1.5rem;
+        text-align: left;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #374151;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .user-table td {
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid #e5e7eb;
+        vertical-align: middle;
+    }
+
+    .user-table tbody tr:hover {
+        background-color: #f9fafb;
+    }
+
+    /* User Info Styles */
+    .user-info {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .avatar {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+    }
+
+    .blue-avatar {
+        background-color: #dbeafe;
+        color: #2563eb;
+    }
+
+    .green-avatar {
+        background-color: #dcfce7;
+        color: #16a34a;
+    }
+
+    .user-name {
+        font-weight: 500;
+        color: #1f2937;
+        margin-bottom: 0.25rem;
+    }
+
+    .user-role {
+        font-size: 0.875rem;
+        color: #6b7280;
+    }
+
+    /* Partner ID Badge */
+    .partner-id {
+        display: inline-flex;
+        padding: 0.375rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
+
+    .blue-badge {
+        background-color: #dbeafe;
+        color: #1d4ed8;
+    }
+    /* .bg-blue {
+  background-color: #3b82f6; 
+}
+
+.bg-green {
+  background-color: #22c55e; 
+} */
+
+    .user-icon {
+        display: inline-flex;
+        padding: 0.375rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.875rem;
+        font-weight: 500;
+         background-color: #dbeafe;
+        color: #1d4ed8;
+
+    }
+
+    .green-badge {
+        background-color: #dcfce7;
+        color: #15803d;
+    }
+
+    /* Action Buttons */
+    .actions {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .action-btn {
+        padding: 0.5rem;
+        border: none;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .edit-btn {
+        color: #2563eb;
+        background: transparent;
+    }
+
+    .edit-btn:hover {
+        background-color: #eff6ff;
+    }
+
+    .delete-btn {
+        color: #dc2626;
+        background: transparent;
+    }
+
+    .delete-btn:hover {
+        background-color: #fef2f2;
+    }
+
+    /* Mobile Card View */
+    .mobile-cards {
+        display: none;
+    }
+
+    .user-card {
+        padding: 1rem;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    .user-card:last-child {
+        border-bottom: none;
+    }
+
+    .card-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.75rem;
+    }
+
+    .card-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .serial-number {
+        font-size: 0.875rem;
+        color: #6b7280;
+        font-weight: 500;
+    }
+
+    .filter-users{
+            display: flex;
+            gap: 10px;
+            padding: 10px;
+    }
+     .filter-btn-users {
+            padding: 10px 18px;
+            border: 2px solid #d1d5db;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 600;
+            font-size: 14px;
+            color: #374151;
+        }
+
+        .filter-btn-users:hover,
+        .filter-btn-users.active {
+            background: #00a54f;
+            color: white;
+            border-color: #00a54f;
+        }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .container {
+            padding: 1rem;
+        }
+
+        .main-title {
+            font-size: 1.75rem;
+        }
+
+        .header-content {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .header-content .add-user-btn {
+            width: 100%;
+        }
+
+
+
+        .mobile-cards {
+            display: block;
+        }
+
+        .user-info .avatar {
+            width: 3rem;
+            height: 3rem;
+            font-size: 1.25rem;
+        }
+    }
+
+    @media (min-width: 769px) and (max-width: 1024px) {
+        .container {
+            padding: 1.5rem;
+        }
+    }
+
+    @media (min-width: 1025px) {
+        .container {
+            padding: 2rem;
+        }
+
+        .main-title {
+            font-size: 2.25rem;
+        }
+    }
+
+    /* Print Styles */
+    @media print {
+
+        .add-user-btn,
+        .actions {
+            display: none;
+        }
+
+        .user-list-card {
+            box-shadow: none;
+            border: 1px solid #e5e7eb;
+        }
+    }

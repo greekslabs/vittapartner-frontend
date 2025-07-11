@@ -1,0 +1,103 @@
+.order-table-container {
+    padding: 1rem;
+    /* background-color: #f3f6fc; */
+    /* border-radius: 12px; */
+    overflow-x: auto;
+}
+
+.order-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.order-table th {
+    background-color: #2f4b68;
+    color: white;
+    text-align: left;
+    padding: 12px;
+}
+
+.order-table td {
+    padding: 12px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.product-link {
+    color: #007bff;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.type-tag {
+    padding: 6px 12px;
+    border-radius: 12px;
+
+    display: inline-block;
+}
+
+
+.quantity {
+    color: orange;
+    font-weight: bold;
+}
+
+.total-price {
+    color: #28a745;
+    font-weight: bold;
+}
+
+.search-box-order-book input {
+    padding: 12px 40px 12px 16px;
+    border: 2px solid #d1d5db;
+    border-radius: 8px;
+    width: 320px;
+    font-size: 15px;
+    transition: all 0.2s ease;
+    background: white;
+    margin-top: 10px;
+    margin-left: 12px;
+}
+
+.search-box-order-book input:focus {
+    outline: none;
+    border-color: #00a54f;
+    box-shadow: 0 0 0 3px rgba(0, 165, 79, 0.1);
+}
+
+.search-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #64748b;
+}
+
+.pagination {
+  margin-top: 12px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 1rem;
+}
+
+.pagination button {
+  padding: 6px 12px;
+  border: none;
+  background-color: #2f4b68;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.pagination button:disabled {
+  background-color: #888;
+  cursor: not-allowed;
+}
+
+.order-inputs{
+    margin-bottom: 10px;
+}

@@ -1,0 +1,373 @@
+  .header-1 {
+      background: white;
+      color: #1f2937;
+      padding: 20px;
+      /* border-bottom: 3px solid #00a54f; */
+      position: relative;
+  }
+
+  .un-head {
+      display: flex;
+  }
+  .un-main-head{
+    display: flex;
+    justify-content: space-between;
+  }
+  .un-title{
+    font-size: 19px;
+    font-weight: 600;
+    color: #333;
+    padding:2px 16px;
+  }
+
+  .header-1::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      /* background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%); */
+      background-color: #f9fafb;
+      z-index: 0;
+  }
+
+  .header-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+  }
+
+  .header-brand {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 16px;
+  }
+
+  .header-logo {
+      width: 30px;
+      height: 35px;
+      background: linear-gradient(135deg, #00a54f 0%, #2e368e 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 13px;
+  }
+
+  .header-1 h1 {
+      font-size: 2.5rem;
+      margin-bottom: 8px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: #111827;
+  }
+
+  .header-1 p {
+      font-size: 1.1rem;
+      color: #6b7280;
+      font-weight: 500;
+  }
+
+  .controls {
+      padding: 24px 30px;
+      background: #f9fafb;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+  }
+
+  .search-box {
+      position: relative;
+  }
+
+  .search-box input {
+      padding: 6px 16px 6px 16px;
+      border: 2px solid #d1d5db;
+      border-radius: 8px;
+      width: 320px;
+      font-size: 15px;
+      transition: all 0.2s ease;
+      background: white;
+  }
+
+  .search-box input:focus {
+      outline: none;
+      border-color: #00a54f;
+      box-shadow: 0 0 0 3px rgba(0, 165, 79, 0.1);
+  }
+
+  .search-icon {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #64748b;
+  }
+
+  .filter-buttons {
+      display: flex;
+      gap: 10px;
+  }
+
+  .filter-btn {
+      padding: 10px 18px;
+      border: 2px solid #d1d5db;
+      background: white;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-weight: 600;
+      font-size: 14px;
+      color: #374151;
+  }
+
+  .trade-link {
+      text-decoration: none;
+  }
+
+  .filter-btn:hover,
+  .filter-btn.active {
+      background: #00a54f;
+      color: white;
+      border-color: #00a54f;
+  }
+
+  .table-container {
+      padding:10px 30px;
+      overflow-x: auto;
+  }
+
+  .shares-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+  }
+
+  .shares-table th {
+      background: #f9fafb;
+      color: #374151;
+      padding: 18px 16px;
+      text-align: left;
+      font-weight: 700;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      border-bottom: 2px solid #e5e7eb;
+  }
+
+  .shares-table td {
+      padding: 8px 16px;
+      border-bottom: 1px solid #f3f4f6;
+      vertical-align: middle;
+  }
+
+  .shares-table tr:hover {
+      background: #f8fafc;
+      transition: all 0.2s ease;
+  }
+
+  .serial-number {
+      font-weight: 600;
+      color: #64748b;
+      width: 60px;
+  }
+
+  .company-name {
+      font-weight: 700;
+      color: #111827;
+      font-size: 16px;
+  }
+
+  .company-symbol {
+      color: #6b7280;
+      font-size: 13px;
+      margin-top: 3px;
+      font-weight: 500;
+  }
+
+  .price {
+      font-size: 18px;
+      font-weight: 700;
+      color: #00a54f;
+  }
+
+  .price-change {
+      font-size: 12px;
+      margin-top: 2px;
+  }
+
+  .price-up {
+      color: #00a54f;
+  }
+
+  .price-down {
+      color: #dc2626;
+  }
+
+  .description {
+      color: #4b5563;
+      line-height: 1.6;
+      max-width: 320px;
+      font-size: 14px;
+  }
+
+  .sector-tag {
+      display: inline-block;
+      background: #e5e7eb;
+      color: #374151;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      margin-top: 6px;
+      letter-spacing: 0.3px;
+  }
+
+  .action-buttons {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+  }
+
+  .btn {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      position: relative;
+      overflow: hidden;
+  }
+
+  .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s;
+  }
+
+  .btn:hover::before {
+      left: 100%;
+  }
+
+  .btn-trade {
+      background: #00a54f;
+      color: white;
+      box-shadow: 0 2px 4px rgba(0, 165, 79, 0.2);
+      border: 2px solid #00a54f;
+  }
+
+  .btn-trade:hover {
+      background: #008f43;
+      border-color: #008f43;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 8px rgba(0, 165, 79, 0.3);
+  }
+
+  .btn-trade:active {
+      transform: translateY(0);
+  }
+
+  .stats-bar {
+      padding: 20px 30px;
+      background: #f9fafb;
+      border-top: 1px solid #e5e7eb;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+      color: #6b7280;
+      font-weight: 500;
+  }
+
+  .pagination {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+  }
+
+  .pagination button {
+      padding: 8px 12px;
+      border: 1px solid #d1d5db;
+      background: white;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-weight: 500;
+  }
+
+  .pagination button:hover,
+  .pagination button.active {
+      background: #00a54f;
+      color: white;
+      border-color: #00a54f;
+  }
+
+  .action-btn {
+      background-color: #00a54f;
+      border: none;
+      color: white;
+      padding: 10px;
+      border-radius: 10px;
+  }
+
+  .product-add-btn {
+      text-decoration: none;
+      color: white;
+  }
+
+  @media (max-width: 768px) {
+      .controls {
+          flex-direction: column;
+          align-items: stretch;
+      }
+
+      .search-box input {
+          width: 100%;
+      }
+
+      .shares-table {
+          font-size: 14px;
+      }
+
+      .shares-table th,
+      .shares-table td {
+          padding: 12px 8px;
+      }
+
+      .action-buttons {
+          flex-direction: row;
+          justify-content: center;
+      }
+
+      .btn {
+          padding: 10px 16px;
+          font-size: 12px;
+      }
+
+      .header-1 h1 {
+          font-size: 1.5rem;
+
+      }
+
+      .filter-buttons {
+          flex-direction: column;
+          gap: 5px;
+      }
+  }

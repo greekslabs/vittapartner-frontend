@@ -1,0 +1,183 @@
+/* NewTransaction.css */
+.card-header-custom {
+  background: linear-gradient(to right, #1d4ed8, #2563eb);
+  color: white;
+  padding: 20px;
+  border-radius: 8px 8px 0 0;
+}
+
+.card-header-custom h2 {
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+.section-title {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin: 3px 0 10px;
+  display: flex;
+  align-items: center;
+}
+
+.section-title i {
+  margin-right: 8px;
+}
+
+.form-control[readonly] {
+  background-color: #f1f5f9;
+  color: #64748b;
+}
+
+.note {
+  font-size: 0.875rem;
+  color: #64748b;
+  margin-top: 5px;
+}
+
+.input-label{
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+.upload-box {
+   
+    border: 2px dashed #ccc;
+   
+}
+
+.upload-box:hover {
+    border-color: #007bff;
+    color: #007bff;
+}
+.button-grp {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.btn-cancel {
+  background-color: #f8f9fa;
+  color: #212529;
+  border: 1px solid #ccc;
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-cancel:hover {
+  background-color: #e2e6ea;
+}
+
+.btn-create {
+  background: linear-gradient(135deg, #00a54f 0%, #2e368e 100%);;
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
+
+
+.text-success {
+    display: block;
+    margin-top: 4px;
+    color: green;
+    font-size: 0.9rem;
+}
+.newtransaction{
+  height: 700px;
+  overflow-y: scroll;
+}
+.transaction-head{
+  display: flex;
+}
+.switchRole{
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+
+
+/*  */
+.transaction-toggle-container {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+.toggle-label {
+  font-weight: bold;
+  margin-right: 15px;
+  display: inline-block;
+}
+
+.toggle-switch {
+  position: relative;
+  width: 120px;
+  height: 40px;
+  background-color: #ddd;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-top: 12px;
+  margin-bottom: 20px;
+  margin-left: 6px;
+}
+
+.slider {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  background:linear-gradient(135deg, #00a54f 0%, #2e368e 100%);;
+  color: #fff;
+  display: flex;              
+  align-items: center;         
+  justify-content: center;     
+  font-weight: bold;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  z-index: 99;
+}
+
+
+.slider.self {
+  left: 0;
+}
+
+.slider.partner {
+  left: 50%;
+}
+
+.switch-labels {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+  align-items: center;
+  font-size: 14px;
+  color: #555;
+  z-index: 0;
+}
+
+.section-output {
+  margin-top: 10px;
+}
+
+.self-section,
+.partner-section {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+}
+
+
+
+
