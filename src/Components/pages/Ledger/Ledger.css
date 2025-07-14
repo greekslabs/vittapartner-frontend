@@ -29,3 +29,36 @@
 .inline-edit-buttons .cancel-btn:hover {
     background-color: #c82333;
 }
+
+
+.custom-pagination {
+    display: flex;
+    justify-content: end;
+    margin-top: 20px;
+    gap: 8px;
+}
+
+.page-btn {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    background-color: #2c3e50;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+}
+
+.page-btn:hover:not(.active):not(.disabled) {
+    background-color: #1a252f;
+}
+
+.page-btn.active {
+    background-color: #27ae60;
+}
+
+.page-btn.disabled {
+    background-color: #7f8c8d;
+    cursor: not-allowed;
+    pointer-events: none;
+}

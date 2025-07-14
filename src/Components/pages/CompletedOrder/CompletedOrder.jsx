@@ -31,17 +31,32 @@ function CompletedOrders() {
                 }
             });
 
-            const users = response?.data?.data || [];
+            let users = response?.data?.data || [];
+
+            // Get logged-in user ID from localStorage
+            const loggedInUserId = localStorage.getItem("user_id");
+
+            // Move logged-in user to the top
+            users = users.sort((a, b) => {
+                if (a.id === loggedInUserId) return -1;
+                if (b.id === loggedInUserId) return 1;
+                return 0;
+            });
+
             setFilteredUsers(users);
 
-            // Set default user if available
-            if (users.length > 0) {
+            // Set the logged-in user as default
+            if (loggedInUserId) {
+                setSelectedUserId(loggedInUserId);
+            } else if (users.length > 0) {
                 setSelectedUserId(users[0].id);
             }
+
         } catch (error) {
             console.error("Error fetching users:", error);
         }
     };
+
 
     const fetchOrderBook = async (token) => {
         try {
@@ -106,7 +121,10 @@ function CompletedOrders() {
                                     value: selectedUserId,
                                     label: (
                                         <div style={{ display: "flex", justifyContent: "space-between" }}>
-                                            <span>{filteredUsers.find(u => u.id === selectedUserId).username}</span>
+                                            <span>
+                                                {filteredUsers.find(u => u.id === selectedUserId).username}
+                                                {filteredUsers.find(u => u.id === selectedUserId).id === localStorage.getItem("user_id") ? " (You)" : ""}
+                                            </span>
                                             <span style={{ color: roleLabels[filteredUsers.find(u => u.id === selectedUserId).role]?.color || "black", fontWeight: "bold" }}>
                                                 {roleLabels[filteredUsers.find(u => u.id === selectedUserId).role]?.label || ""}
                                             </span>
@@ -115,17 +133,22 @@ function CompletedOrders() {
                                 }
                                 : null
                         }
+
                         options={filteredUsers.map(user => ({
                             value: user.id,
                             label: (
                                 <div style={{ display: "flex", justifyContent: "space-between" }}>
-                                    <span>{user.username}</span>
+                                    <span>
+                                        {user.username}
+                                        {user.id === localStorage.getItem("user_id") ? " (You)" : ""}
+                                    </span>
                                     <span style={{ color: roleLabels[user.role]?.color || "black", fontWeight: "bold" }}>
                                         {roleLabels[user.role]?.label || ""}
                                     </span>
                                 </div>
                             )
                         }))}
+
                         onChange={(selected) => setSelectedUserId(selected ? selected.value : '')}
                     />
                 </div>

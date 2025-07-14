@@ -31,15 +31,32 @@ function CancelledOrder() {
                 }
             });
 
-            const users = response?.data?.data || [];
+            let users = response?.data?.data || [];
+
+            // Get logged-in user ID from localStorage
+            const loggedInUserId = localStorage.getItem("user_id");
+
+            // Sort so that logged-in user comes first
+            users = users.sort((a, b) => {
+                if (a.id === loggedInUserId) return -1;
+                if (b.id === loggedInUserId) return 1;
+                return 0;
+            });
+
             setFilteredUsers(users);
-            if (users.length > 0) {
-                setSelectedUserId(users[0].id); // Default to first user
+
+            // Set default selected user
+            if (loggedInUserId) {
+                setSelectedUserId(loggedInUserId);
+            } else if (users.length > 0) {
+                setSelectedUserId(users[0].id);
             }
+
         } catch (error) {
             console.error("Error fetching users:", error);
         }
     };
+
 
     const fetchOrderBook = async (token) => {
         try {
@@ -104,8 +121,14 @@ function CancelledOrder() {
                                     value: selectedUserId,
                                     label: (
                                         <div style={{ display: "flex", justifyContent: "space-between" }}>
-                                            <span>{filteredUsers.find(u => u.id === selectedUserId).username}</span>
-                                            <span style={{ color: roleLabels[filteredUsers.find(u => u.id === selectedUserId).role]?.color || "black", fontWeight: "bold" }}>
+                                            <span>
+                                                {filteredUsers.find(u => u.id === selectedUserId).username}
+                                                {filteredUsers.find(u => u.id === selectedUserId).id === localStorage.getItem("user_id") ? " (You)" : ""}
+                                            </span>
+                                            <span style={{
+                                                color: roleLabels[filteredUsers.find(u => u.id === selectedUserId).role]?.color || "black",
+                                                fontWeight: "bold"
+                                            }}>
                                                 {roleLabels[filteredUsers.find(u => u.id === selectedUserId).role]?.label || ""}
                                             </span>
                                         </div>
@@ -117,8 +140,14 @@ function CancelledOrder() {
                             value: user.id,
                             label: (
                                 <div style={{ display: "flex", justifyContent: "space-between" }}>
-                                    <span>{user.username}</span>
-                                    <span style={{ color: roleLabels[user.role]?.color || "black", fontWeight: "bold" }}>
+                                    <span>
+                                        {user.username}
+                                        {user.id === localStorage.getItem("user_id") ? " (You)" : ""}
+                                    </span>
+                                    <span style={{
+                                        color: roleLabels[user.role]?.color || "black",
+                                        fontWeight: "bold"
+                                    }}>
                                         {roleLabels[user.role]?.label || ""}
                                     </span>
                                 </div>
@@ -126,6 +155,7 @@ function CancelledOrder() {
                         }))}
                         onChange={(selected) => setSelectedUserId(selected ? selected.value : '')}
                     />
+
                 </div>
             )}
 

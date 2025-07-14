@@ -27,6 +27,9 @@ function Ledger() {
         amount: ""
     });
 
+    const [currentPage, setCurrentPage] = useState(1);
+    const rowsPerPage = 6;
+
     useEffect(() => {
         const token = localStorage.getItem("token");
         const userRole = localStorage.getItem("role");
@@ -71,12 +74,11 @@ function Ledger() {
         }
     };
 
-    const filteredLedger =
-        role === "partner"
-            ? ledger
-            : selectedPartner
-                ? ledger.filter(entry => entry.owner === selectedPartner.value)
-                : ledger;
+    const filteredLedger = role === "partner"
+        ? ledger
+        : selectedPartner
+            ? ledger.filter(entry => entry.owner === selectedPartner.value)
+            : ledger;
 
     const partnerTotals = {};
     ledger.forEach(entry => {
@@ -85,6 +87,9 @@ function Ledger() {
         if (!partnerTotals[partnerId]) partnerTotals[partnerId] = 0;
         partnerTotals[partnerId] += entry.entry_type === "credit" ? amount : -amount;
     });
+
+    const paginatedLedger = filteredLedger.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
+    const totalPages = Math.ceil(filteredLedger.length / rowsPerPage);
 
     const handleNewEntryChange = (field, value) => {
         setNewEntry(prev => ({ ...prev, [field]: value }));
@@ -120,10 +125,6 @@ function Ledger() {
             Swal.fire("Error", "Failed to save entry.", "error");
         }
     };
-    const handleCancelEntry=()=>{
-        setShowNewRow(false)
-
-    }
 
     const handleEditClick = (entry) => {
         setEditRowId(entry.id);
@@ -158,9 +159,9 @@ function Ledger() {
         }
     };
 
-    const handleDeleteLedger=async(id)=>{
-         const token=localStorage.getItem("token");
-          const result = await Swal.fire({
+    const handleDeleteLedger = async (id) => {
+        const token = localStorage.getItem("token");
+        const result = await Swal.fire({
             title: 'Are you sure?',
             text: "This entry will be permanently deleted!",
             icon: 'warning',
@@ -188,8 +189,7 @@ function Ledger() {
                 Swal.fire("Error", "Failed to delete entry.", "error");
             }
         }
-
-    }
+    };
 
     return (
         <div className="content-area">
@@ -231,8 +231,8 @@ function Ledger() {
                         </tr>
                     </thead>
                     <tbody>
-                        {filteredLedger.length > 0 ? (
-                            [...filteredLedger].reverse().map((data, idx) => (
+                        {paginatedLedger.length > 0 ? (
+                            paginatedLedger.map((data, idx) => (
                                 <tr key={idx}>
                                     {editRowId === data.id ? (
                                         <>
@@ -265,9 +265,9 @@ function Ledger() {
                                                 />
                                             </td>
                                             <td colSpan="2">
-                                                <div className="inline-edit-buttons">
-                                                    <button className="save-btn" onClick={() => handleSaveEdit(data.id)}>Save</button>
-                                                    <button className="cancel-btn" onClick={handleCancelEdit}>Cancel</button>
+                                                 <div className="inline-edit-buttons">
+                                                <button className="save-btn"  onClick={() => handleSaveEdit(data.id)}>Save</button>
+                                                <button className="cancel-btn"  onClick={handleCancelEdit}>Cancel</button>
                                                 </div>
                                             </td>
                                         </>
@@ -288,7 +288,11 @@ function Ledger() {
                                                         ></i>
                                                     </td>
                                                     <td>
-                                                        <i onClick={()=>handleDeleteLedger(data.id)} className="bi bi-trash3"></i>
+                                                        <i
+                                                            className="bi bi-trash3"
+                                                            style={{ cursor: "pointer" }}
+                                                            onClick={() => handleDeleteLedger(data.id)}
+                                                        ></i>
                                                     </td>
                                                 </>
                                             )}
@@ -303,7 +307,6 @@ function Ledger() {
                                 </td>
                             </tr>
                         )}
-
                         {showNewRow && (
                             <tr>
                                 <td>
@@ -333,14 +336,12 @@ function Ledger() {
                                 </td>
                                 <td colSpan="2">
                                      <div className="inline-edit-buttons">
-                                         <button className="save-btn" onClick={handleSaveEntry}>Save</button>
-                                           <button className="cancel-btn" onClick={handleCancelEntry}>Cancel</button>
-                                     </div>
-                                   
+                                    <button className="save-btn" onClick={handleSaveEntry}>Save</button>
+                                    <button className="cancel-btn" onClick={() => setShowNewRow(false)}>Cancel</button>
+                                    </div>
                                 </td>
                             </tr>
                         )}
-
                         {selectedPartner && (
                             <tr>
                                 <td colSpan="2"><strong>Total</strong></td>
@@ -352,6 +353,35 @@ function Ledger() {
                         )}
                     </tbody>
                 </table>
+
+                {/* PAGINATION UI */}
+                <div className="custom-pagination">
+                    <button
+                        className={`page-btn ${currentPage === 1 ? 'disabled' : ''}`}
+                        onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                        disabled={currentPage === 1}
+                    >
+                        ←
+                    </button>
+
+                    {[...Array(totalPages)].map((_, i) => (
+                        <button
+                            key={i}
+                            className={`page-btn ${currentPage === i + 1 ? 'active' : ''}`}
+                            onClick={() => setCurrentPage(i + 1)}
+                        >
+                            {i + 1}
+                        </button>
+                    ))}
+
+                    <button
+                        className={`page-btn ${currentPage === totalPages ? 'disabled' : ''}`}
+                        onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                        disabled={currentPage === totalPages}
+                    >
+                        →
+                    </button>
+                </div>
             </div>
         </div>
     );

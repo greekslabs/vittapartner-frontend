@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import './MasterLedger.css'; // Ensure this has styles from previous answers
+import './MasterLedger.css';
 
 function MasterLedger() {
     const [ledgerEntries, setLedgerEntries] = useState([]);
@@ -17,6 +17,12 @@ function MasterLedger() {
 
     const token = localStorage.getItem('token');
     const apiUrl = import.meta.env.VITE_API_PRODUCTS_URL;
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const rowsPerPage = 6;
+
+    const totalPages = Math.ceil(ledgerEntries.length / rowsPerPage);
+    const paginatedEntries = ledgerEntries.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
 
     useEffect(() => {
         const userRole = localStorage.getItem("role");
@@ -122,8 +128,6 @@ function MasterLedger() {
         }
     };
 
-    // delete ledger
-
     const handleDeleteLedger = async (id) => {
         const result = await Swal.fire({
             title: 'Are you sure?',
@@ -155,7 +159,6 @@ function MasterLedger() {
         }
     };
 
-
     return (
         <div className="content-area">
             <div className='un-head'>
@@ -180,28 +183,24 @@ function MasterLedger() {
                     <tbody>
                         {loading ? (
                             <tr><td colSpan="5">Loading...</td></tr>
-                        ) : ledgerEntries.length === 0 ? (
+                        ) : paginatedEntries.length === 0 ? (
                             <tr><td colSpan="5">No entries found.</td></tr>
                         ) : (
                             <>
-                                {ledgerEntries.map(entry => (
+                                {paginatedEntries.map(entry => (
                                     <tr key={entry.id}>
                                         {editRowId === entry.id ? (
                                             <>
                                                 <td>
                                                     <input
                                                         value={editEntry.description}
-                                                        onChange={(e) =>
-                                                            setEditEntry({ ...editEntry, description: e.target.value })
-                                                        }
+                                                        onChange={(e) => setEditEntry({ ...editEntry, description: e.target.value })}
                                                     />
                                                 </td>
                                                 <td>
                                                     <select
                                                         value={editEntry.entry_type}
-                                                        onChange={(e) =>
-                                                            setEditEntry({ ...editEntry, entry_type: e.target.value })
-                                                        }
+                                                        onChange={(e) => setEditEntry({ ...editEntry, entry_type: e.target.value })}
                                                     >
                                                         <option value="credit">Credit</option>
                                                         <option value="debit">Debit</option>
@@ -211,9 +210,7 @@ function MasterLedger() {
                                                     <input
                                                         type="number"
                                                         value={editEntry.amount}
-                                                        onChange={(e) =>
-                                                            setEditEntry({ ...editEntry, amount: e.target.value })
-                                                        }
+                                                        onChange={(e) => setEditEntry({ ...editEntry, amount: e.target.value })}
                                                     />
                                                 </td>
                                                 <td colSpan="2">
@@ -233,11 +230,7 @@ function MasterLedger() {
                                                 {role === "accountant" && (
                                                     <>
                                                         <td>
-                                                            <i
-                                                                className="bi bi-pencil-square"
-                                                                style={{ cursor: "pointer" }}
-                                                                onClick={() => handleEditClick(entry)}
-                                                            ></i>
+                                                            <i className="bi bi-pencil-square" style={{ cursor: "pointer" }} onClick={() => handleEditClick(entry)}></i>
                                                         </td>
                                                         <td onClick={() => handleDeleteLedger(entry.id)}><i className="bi bi-trash3"></i></td>
                                                     </>
@@ -247,9 +240,7 @@ function MasterLedger() {
                                     </tr>
                                 ))}
                                 <tr>
-                                    <td colSpan="2" style={{ textAlign: "right", fontWeight: "bold" }}>
-                                        Total Balance:
-                                    </td>
+                                    <td colSpan="2" style={{ textAlign: "right", fontWeight: "bold" }}>Total Balance:</td>
                                     <td style={{ fontWeight: "bold", color: totalBalance < 0 ? "red" : "green" }}>
                                         ₹{totalBalance.toLocaleString(undefined, { minimumFractionDigits: 2 })}
                                     </td>
@@ -295,6 +286,32 @@ function MasterLedger() {
                         )}
                     </tbody>
                 </table>
+
+                <div className="custom-pagination">
+                    <button
+                        className={`page-btn ${currentPage === 1 ? 'disabled' : ''}`}
+                        onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                        disabled={currentPage === 1}
+                    >
+                        ←
+                    </button>
+                    {[...Array(totalPages)].map((_, i) => (
+                        <button
+                            key={i}
+                            className={`page-btn ${currentPage === i + 1 ? 'active' : ''}`}
+                            onClick={() => setCurrentPage(i + 1)}
+                        >
+                            {i + 1}
+                        </button>
+                    ))}
+                    <button
+                        className={`page-btn ${currentPage === totalPages ? 'disabled' : ''}`}
+                        onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                        disabled={currentPage === totalPages}
+                    >
+                        →
+                    </button>
+                </div>
             </div>
         </div>
     );

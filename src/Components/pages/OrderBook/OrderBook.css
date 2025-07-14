@@ -106,3 +106,10 @@
   font-size: 0.95rem;
   color: red;
 }
+
+.blur-row {
+  filter: blur(0.5px);
+  opacity: 0.6;
+  pointer-events: none; /* Prevents interaction */
+}
+

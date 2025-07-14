@@ -12,7 +12,7 @@ function Unlistedshare() {
     const [sharesData, setSharesData] = useState([]); // Initialize as empty array
     const [role, setRole] = useState("");
     const [editableData, setEditableData] = useState([]);
-    const itemsPerPage = 5;
+    const itemsPerPage = 7;
     const apiUrl = import.meta.env.VITE_API_PRODUCTS_URL
     const closeModal=useRef();
     const navigate = useNavigate();

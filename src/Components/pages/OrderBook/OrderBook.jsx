@@ -7,7 +7,7 @@ import Select from "react-select";
 function OrderBook() {
     const apiUrl = import.meta.env.VITE_API_PRODUCTS_URL;
     const apiUsersUrl = import.meta.env.VITE_API_LOGIN_URL;
-
+    const [token, setToken] = useState("")
     const [role, setRole] = useState("");
     const [allUsers, setAllUsers] = useState([]);
     const [selectedUserId, setSelectedUserId] = useState('');
@@ -30,6 +30,7 @@ function OrderBook() {
 
     useEffect(() => {
         const token = localStorage.getItem("token");
+        setToken(token)
         fetchOrderBook(token);
         const storedRole = localStorage.getItem("role");
         setRole(storedRole);
@@ -44,11 +45,25 @@ function OrderBook() {
                 }
             });
 
-            const users = response?.data?.data || [];
+            let users = response?.data?.data || [];
+
+            // Get logged-in user ID and username from localStorage
+            const loggedInUserId = localStorage.getItem("user_id");
+            const loggedInUsername = localStorage.getItem("username");
+
+            // Move logged-in user to the top of the list
+            users = users.sort((a, b) => {
+                if (a.id === loggedInUserId) return -1;
+                if (b.id === loggedInUserId) return 1;
+                return 0;
+            });
+
             setFilteredUsers(users);
 
-            // Set first user by default
-            if (users.length > 0) {
+            // Set the logged-in user as the default selected
+            if (loggedInUserId) {
+                setSelectedUserId(loggedInUserId);
+            } else if (users.length > 0) {
                 setSelectedUserId(users[0].id);
             }
 
@@ -233,38 +248,104 @@ function OrderBook() {
     const handleCancellOrder = async (transaction_id) => {
         const token = localStorage.getItem("token");
 
-        try {
-            const response = await axios.patch(`${apiUrl}transactions/${transaction_id}/`, {
-                status: "cancelled"
-            }, {
-                headers: {
-                    Authorization: `Token ${token}`,
-                    "Content-Type": "application/json"
-                }
-            });
+        // Show confirmation alert
+        const result = await Swal.fire({
+            title: 'Are you sure?',
+            text: "Do you really want to cancel this transaction?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, cancel it!',
+            cancelButtonText: 'No, keep it'
+        });
 
-            console.log("Transaction cancelled:", response);
+        // If user confirms cancellation
+        if (result.isConfirmed) {
+            try {
+                const response = await axios.patch(`${apiUrl}transactions/${transaction_id}/`, {
+                    status: "cancelled"
+                }, {
+                    headers: {
+                        Authorization: `Token ${token}`,
+                        "Content-Type": "application/json"
+                    }
+                });
 
-            Swal.fire({
-                icon: 'success',
-                title: 'Cancelled!',
-                text: 'Transaction cancelled successfully.',
-                timer: 2000,
-                showConfirmButton: false
-            });
+                console.log("Transaction cancelled:", response);
 
-            fetchOrderBook(token);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Cancelled!',
+                    text: 'Transaction cancelled successfully.',
+                    timer: 2000,
+                    showConfirmButton: false
+                });
 
-        } catch (error) {
-            console.error("Error cancelling order:", error.response?.data || error.message);
+                fetchOrderBook(token);
 
-            Swal.fire({
-                icon: 'error',
-                title: 'Error!',
-                text: 'Failed to cancel the transaction.',
-            });
+            } catch (error) {
+                console.error("Error cancelling order:", error.response?.data || error.message);
+
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error!',
+                    text: 'Failed to cancel the transaction.',
+                });
+            }
         }
     };
+
+
+    // delete Tranasaction
+
+    const handleDeleteTransaction = async (id) => {
+        const token = localStorage.getItem("token");
+
+        const confirm = await Swal.fire({
+            title: 'Are you sure?',
+            text: "Do you want to permanently delete this transaction?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'Cancel'
+        });
+
+        if (confirm.isConfirmed) {
+            try {
+                const response = await axios.delete(`${apiUrl}transactions/${id}/`, {
+                    headers: {
+                        Authorization: `Token ${token}`,
+                        "Content-Type": "application/json"
+                    }
+                });
+
+                if (response.status === 200) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Deleted!',
+                        text: 'Transaction has been deleted successfully.',
+                        timer: 2000,
+                        showConfirmButton: false
+                    });
+
+                    // Optionally refresh the data
+                    fetchOrderBook(token);
+                }
+
+            } catch (error) {
+                console.error("Delete failed:", error.response?.data || error.message);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error!',
+                    text: 'Failed to delete the transaction.',
+                });
+            }
+        }
+    };
+
 
     return (
         <div className="content-area">
@@ -290,13 +371,17 @@ function OrderBook() {
                             value: user.id,
                             label: (
                                 <div style={{ display: "flex", justifyContent: "space-between" }}>
-                                    <span>{user.username}</span>
+                                    <span>
+                                        {user.username}
+                                        {user.id === localStorage.getItem("user_id") && " (You)"}
+                                    </span>
                                     <span style={{ color: roleLabels[user.role]?.color || "black", fontWeight: "bold" }}>
                                         {roleLabels[user.role]?.label || ""}
                                     </span>
                                 </div>
                             )
                         }))}
+
                         onChange={(selected) => setSelectedUserId(selected ? selected.value : "")}
                     />
 
@@ -333,6 +418,10 @@ function OrderBook() {
                                     <th></th>
                                 </>
                             )}
+                            {(role === "vittamoney_user" || role === "vittamoney") && (
+                                <th>DELETE</th>
+
+                            )}
                         </tr>
                     </thead>
                     <tbody>
@@ -340,7 +429,7 @@ function OrderBook() {
                             paginatedOrders.map((order, idx) => {
                                 const total = order.quantity * parseFloat(order.client_price || 0);
                                 return (
-                                    <tr key={idx}>
+                                    <tr key={idx} className={order.payment ? "blur-row" : ""} >
                                         <td>{order.order_id}</td>
                                         <td>{order.client_id}</td>
                                         <td>{order.client_name}</td>
@@ -373,6 +462,17 @@ function OrderBook() {
                                                 </td>
                                             </>
                                         )}
+                                        {(role === "vittamoney_user" || role === "vittamoney") && (
+
+                                            <td onClick={() => handleDeleteTransaction(order.id)}>
+                                                <i className="bi bi-trash3 ms-3"></i>
+                                            </td>
+
+
+                                        )}
+
+
+
                                     </tr>
                                 );
                             })
@@ -417,7 +517,12 @@ function OrderBook() {
                                 </div>
                                 <div className='order-inputs'>
                                     <label>Bank Account Number</label>
-                                    <input type="text" name='bankAccountNumber' className="form-control" value={formData.bankAccountNumber} onChange={handleChangeInputs} />
+                                    <input type="text" name='bankAccountNumber' style={{ textTransform: "uppercase" }} className="form-control" value={formData.bankAccountNumber} onChange={(e) =>
+                                        setData((prev) => ({
+                                            ...prev,
+                                            bankAccountNumber: e.target.value.toUpperCase() // stores as uppercase
+                                        }))
+                                    } />
                                 </div>
                                 <div className='order-inputs'>
                                     <label>Payment Receipt</label>
