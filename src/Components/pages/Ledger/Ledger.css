@@ -33,7 +33,7 @@
 
 .custom-pagination {
     display: flex;
-    justify-content: end;
+    justify-content: end    ;
     margin-top: 20px;
     gap: 8px;
 }
