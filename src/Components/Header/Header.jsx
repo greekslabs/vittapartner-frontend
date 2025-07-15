@@ -79,8 +79,8 @@ function Header() {
           </div>
 
 
-         
-          <div data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+
+          <div data-bs-toggle="modal" data-bs-target="#profileModal">
             <div className='profile-main'>
               <div className="user-avatar">
                 {username ? username[0].toUpperCase() : "?"}
@@ -99,74 +99,74 @@ function Header() {
 
 
           <div
-  className="modal fade"
-  id="staticBackdrop"
-  data-bs-backdrop="static"
-  data-bs-keyboard="false"
-  tabIndex="-1"
-  aria-labelledby="staticBackdropLabel"
-  aria-hidden="true"
->
-  <div className="modal-dialog modal-dialog-centered">
-    <div
-      className="modal-content border-0 rounded-4 shadow-lg"
-      style={{
-        background: 'linear-gradient(to bottom right, #ffffff, #f1f3f5)',
-        color: '#212529',
-        fontFamily: 'Segoe UI, sans-serif',
-      }}
-    >
-      {/* Close Button */}
-      <div className="d-flex justify-content-end p-3">
-        <button
-          type="button"
-          className="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-
-      {/* Modal Body */}
-      <div className="modal-body pt-0 px-4 pb-4">
-        {/* Avatar & Header */}
-        <div className="text-center mb-4">
-          <div
-            className="user-avatar-profile mx-auto d-flex align-items-center justify-content-center shadow"
-           
+            className="modal fade"
+            id="profileModal"
+            data-bs-backdrop="static"
+            data-bs-keyboard="false"
+            tabIndex="-1"
+            aria-labelledby="staticBackdropLabel"
+            aria-hidden="true"
           >
-            {username ? username[0].toUpperCase() : '?'}
+            <div className="modal-dialog modal-dialog-centered profile-dialog">
+              <div
+                className="modal-content border-0 rounded-4 shadow-lg profile-modal"
+                style={{
+                  background: 'linear-gradient(to bottom right, #ffffff, #f1f3f5)',
+                  color: '#212529',
+                  fontFamily: 'Segoe UI, sans-serif',
+                }}
+              >
+                {/* Close Button */}
+                <div className="d-flex justify-content-end p-3">
+                  <button
+                    type="button"
+                    className="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+
+                {/* Modal Body */}
+                <div className="modal-body pt-0 px-4 pb-4">
+                  {/* Avatar & Header */}
+                  <div className="text-center mb-4">
+                    <div
+                      className="user-avatar-profile mx-auto d-flex align-items-center justify-content-center shadow"
+
+                    >
+                      {username ? username[0].toUpperCase() : '?'}
+                    </div>
+                    <h5 className="mt-3 mb-1 fw-bold">{username}</h5>
+                    <span className="badge rounded-pill bg-gradient bg-success px-3 py-1">
+                      {roleName}
+                    </span>
+                  </div>
+
+                  <hr className="mb-4" />
+
+                  {/* Profile Info */}
+                  <div className="text-center">
+                    <p className="text-muted mb-2">
+                      <strong>User ID:</strong>{' '}
+                      <span className="text-dark">{userId}</span>
+                    </p>
+                    <p className="text-muted mb-2">
+                      <strong>Username:</strong>{' '}
+                      <span className="text-dark">{username}</span>
+                    </p>
+                    <p className="text-muted mb-2">
+                      <strong>Email:</strong>{' '}
+                      <span className="text-dark">{email}</span>
+                    </p>
+                    <p className="text-muted mb-0">
+                      <strong>Phone:</strong>{' '}
+                      <span className="text-dark">{phone}</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <h5 className="mt-3 mb-1 fw-bold">{username}</h5>
-          <span className="badge rounded-pill bg-gradient bg-success px-3 py-1">
-            {roleName}
-          </span>
-        </div>
-
-        <hr className="mb-4" />
-
-        {/* Profile Info */}
-        <div className="text-center">
-          <p className="text-muted mb-2">
-            <strong>User ID:</strong>{' '}
-            <span className="text-dark">{userId}</span>
-          </p>
-          <p className="text-muted mb-2">
-            <strong>Username:</strong>{' '}
-            <span className="text-dark">{username}</span>
-          </p>
-          <p className="text-muted mb-2">
-            <strong>Email:</strong>{' '}
-            <span className="text-dark">{email}</span>
-          </p>
-          <p className="text-muted mb-0">
-            <strong>Phone:</strong>{' '}
-            <span className="text-dark">{phone}</span>
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 
 

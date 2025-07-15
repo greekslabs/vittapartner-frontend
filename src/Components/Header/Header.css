@@ -117,6 +117,12 @@
     color: #333;
     font-weight: 500;
 }
+.profile-modal{
+    width: 300px;
+}
+.profile-dialog{
+    justify-content: center;
+}
 
 @media (max-width:768px) {
     .logout-btn {
