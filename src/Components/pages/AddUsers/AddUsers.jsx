@@ -326,7 +326,7 @@ const UserManagementSystem = () => {
                                             ) : (
                                                 <div className="user-icon-partner">
 
-                                                    <i class="bi bi-person-check"></i>
+                                                    <i className="bi bi-person-check"></i>
                                                 </div>
 
                                             )}
@@ -369,7 +369,7 @@ const UserManagementSystem = () => {
                                             </button>
                                         </div>
                                     </td>
-                                    <td data-bs-toggle="modal" data-bs-target="#resetModal" onClick={() => handleResetPasswordId(user.id)}><i class="bi bi-unlock2 reset-pswrd"></i></td>
+                                    <td data-bs-toggle="modal" data-bs-target="#resetModal" onClick={() => handleResetPasswordId(user.id)}><i className="bi bi-unlock2 reset-pswrd"></i></td>
                                 </tr>
                             ))}
                         </tbody>
@@ -474,14 +474,14 @@ const UserManagementSystem = () => {
 
             {/* reset password */}
 
-            <div class="modal fade" id="resetModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Reset Password</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ref={closeRef}></button>
+            <div className="modal fade" id="resetModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog modal-dialog-centered">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h1 className="modal-title fs-5" id="exampleModalLabel">Reset Password</h1>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" ref={closeRef}></button>
                         </div>
-                        <div class="modal-body">
+                        <div className="modal-body">
                             <form>
                                 <div className="mb-3 position-relative">
                                     <label className="form-label">Password</label>
@@ -528,7 +528,7 @@ const UserManagementSystem = () => {
 
 
                         </div>
-                        <div class="modal-footer">
+                        <div className="modal-footer">
                             <button type="button"   className="save-btn-modal" onClick={handleResetPAssword}>Save changes</button>
                         </div>
                     </div>

@@ -148,13 +148,14 @@
         background-color: #dbeafe;
         color: #1d4ed8;
     }
-.save-btn-modal{
-    background: linear-gradient(135deg, #00a54f 0%, #2e368e 100%);
-    color: white;
-    padding: 8px 12px;
-    border: none;
-    border-radius:10px;
-}
+
+    .save-btn-modal {
+        background: linear-gradient(135deg, #00a54f 0%, #2e368e 100%);
+        color: white;
+        padding: 8px 12px;
+        border: none;
+        border-radius: 10px;
+    }
 
     .user-icon {
         display: inline-flex;

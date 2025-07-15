@@ -270,14 +270,14 @@ const handleDelete = async (id) => {
 
                 </table>
                 {/* edit modal  */}
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Product</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ref={closeModal}></button>
+                <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal-dialog modal-dialog-centered">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h1 className="modal-title fs-5" id="exampleModalLabel">Edit Product</h1>
+                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" ref={closeModal}></button>
                             </div>
-                            <div class="modal-body">
+                            <div className="modal-body">
                                 <label>Name</label>
                                 <input
                                     type='text'
@@ -301,7 +301,7 @@ const handleDelete = async (id) => {
                                 />
 
                             </div>
-                            <div class="modal-footer">
+                            <div className="modal-footer">
                                 <button type="button"  className="save-btn-modal"  onClick={() => handleSaveEdit(editableData.id)}>Save changes</button>
                             </div>
                         </div>

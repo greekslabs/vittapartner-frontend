@@ -135,7 +135,7 @@ function Dashboard() {
                                             <div>
                                                 <div className="stat-title">Total Unlisted Shares</div>
                                             </div>
-                                            <div className="stat-icon shares"><i class="bi bi-graph-up"></i></div>
+                                            <div className="stat-icon shares"><i className="bi bi-graph-up"></i></div>
                                         </div>
                                         <div className="stat-value">{totalShare}</div>
                                         {/* <div className="stat-description">
@@ -153,7 +153,7 @@ function Dashboard() {
                                         <div>
                                             <div className="stat-title">Completed Orders</div>
                                         </div>
-                                        <div className="stat-icon completed"><i class="bi bi-check-lg"></i></div>
+                                        <div className="stat-icon completed"><i className="bi bi-check-lg"></i></div>
                                     </div>
                                     <div className="stat-value">{completedOrders}</div>
                                     {/* <div className="stat-description">
@@ -168,7 +168,7 @@ function Dashboard() {
                                         <div>
                                             <div className="stat-title">Pending Orders</div>
                                         </div>
-                                        <div className="stat-icon pending"><i class="bi bi-hourglass-split"></i></div>
+                                        <div className="stat-icon pending"><i className="bi bi-hourglass-split"></i></div>
                                     </div>
                                     <div className="stat-value">{pendingOrders}</div>
                                     {/* <div className="stat-description">
@@ -183,7 +183,7 @@ function Dashboard() {
                                         <div>
                                             <div className="stat-title">Cancelled orders</div>
                                         </div>
-                                        <div className="stat-icon orders"><i class="bi bi-x"></i></div>
+                                        <div className="stat-icon orders"><i className="bi bi-x"></i></div>
                                     </div>
                                     <div className="stat-value">{cancelledOrders}</div>
                                     {/* <div className="stat-description">

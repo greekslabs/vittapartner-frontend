@@ -245,7 +245,7 @@ function NewTransaction() {
                 <div className="card-body">
                     {/* Employee Details */}
                     <div className='transaction-head'>
-                        <div className="section-title"><i class="bi bi-person-badge"></i> Transaction Owned By</div>
+                        <div className="section-title"><i className="bi bi-person-badge"></i> Transaction Owned By</div>
                         {(role === "vittamoney" || role === "vittamoney_user") && (
                             <div className="toggle-switch" onClick={handleToggle}>
                                 <div className={`slider ${isPartner ? 'partner' : 'self'}`}>
@@ -338,7 +338,7 @@ function NewTransaction() {
                     </div>
 
                     {/* Trade Details */}
-                    <div className="section-title"><i class="bi bi-graph-up-arrow"></i> Trade Details</div>
+                    <div className="section-title"><i className="bi bi-graph-up-arrow"></i> Trade Details</div>
                     <hr />
                     <div className="row mb-3">
                         <div className="col-md-4">
@@ -366,12 +366,12 @@ function NewTransaction() {
                         <div className="col-md-4">
                             <label className='input-label'>Our Price (₹)</label>
                             <input className="form-control" name="ourPrice" value={trade.ourPrice} onChange={handleTradeChange} />
-                            <div className="note"><i class="bi bi-lightbulb"></i> Auto-filled from product selection. Click to edit for special offers.</div>
+                            <div className="note"><i className="bi bi-lightbulb"></i> Auto-filled from product selection. Click to edit for special offers.</div>
                         </div>
                     </div>
 
                     {/* Client Info */}
-                    <div className="section-title"><i class="bi bi-person-lines-fill"></i> Client Information</div>
+                    <div className="section-title"><i className="bi bi-person-lines-fill"></i> Client Information</div>
                     <hr />
                     <div className="row mb-3">
                         <div className="col-md-4">
@@ -389,7 +389,7 @@ function NewTransaction() {
                     </div>
 
                     {/* DP Details */}
-                    <div className="section-title"><i class="bi bi-bank me-2"></i>  Depository Participant (DP) Details</div>
+                    <div className="section-title"><i className="bi bi-bank me-2"></i>  Depository Participant (DP) Details</div>
                     <hr />
                     <div className="mb-3">
                         <label className="input-label d-block mb-2">DP Type</label>
@@ -422,7 +422,7 @@ function NewTransaction() {
                                 style={{ display: "none" }}
                                 onChange={handleDPChange}
                             />
-                            <label htmlFor="dpCopy" className="upload-box form-control"><i class="bi bi-file-earmark-plus"></i> Click to upload DP copy</label>
+                            <label htmlFor="dpCopy" className="upload-box form-control"><i className="bi bi-file-earmark-plus"></i> Click to upload DP copy</label>
 
                             {/* ✅ Show file name if selected */}
                             {dpDetails.dpCopy && (
@@ -440,7 +440,7 @@ function NewTransaction() {
                                 style={{ display: "none" }}
                                 onChange={handleDPChange}
                             />
-                            <label htmlFor="cmlCopy" className="upload-box form-control"><i class="bi bi-file-earmark-plus"></i> Click to upload CML copy</label>
+                            <label htmlFor="cmlCopy" className="upload-box form-control"><i className="bi bi-file-earmark-plus"></i> Click to upload CML copy</label>
 
                            
                             {dpDetails.cmlCopy && (

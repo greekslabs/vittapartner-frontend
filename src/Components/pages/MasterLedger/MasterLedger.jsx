@@ -216,7 +216,7 @@ function MasterLedger() {
                                                 <td colSpan="2">
                                                     <div className="inline-edit-buttons">
                                                         <button className="save-btn" onClick={() => handleSaveEdit(entry.id)}>Save</button>
-                                                        <div className="cancel-btn" onClick={handleCancelEdit}><i class="bi bi-x-circle"></i></div>
+                                                        <div className="cancel-btn" onClick={handleCancelEdit}><i className="bi bi-x-circle"></i></div>
                                                     </div>
                                                 </td>
                                             </>
@@ -279,7 +279,7 @@ function MasterLedger() {
                                 <td colSpan="2">
                                     <div className="inline-edit-buttons">
                                         <button className='save-btn' onClick={handleSaveEntry}>Save</button>
-                                        <div className="cancel-btn" onClick={handleCancelEntry}><i class="bi bi-x-circle"></i></div>
+                                        <div className="cancel-btn" onClick={handleCancelEntry}><i className="bi bi-x-circle"></i></div>
                                     </div>
                                 </td>
                             </tr>

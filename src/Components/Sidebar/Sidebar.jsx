@@ -28,33 +28,33 @@ function Sidebar() {
                 <ul className="nav-menu">
                     <li>
                         <NavLink to="/dashboard" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
-                            <i class="bi bi-grid icon-color"></i> Dashboard
+                            <i className="bi bi-grid icon-color"></i> Dashboard
                         </NavLink>
                     </li>
                     <li>
                         <NavLink to="/unlisted" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
-                            <i class="bi bi-graph-up icon-color"></i> Unlisted Shares
+                            <i className="bi bi-graph-up icon-color"></i> Unlisted Shares
                         </NavLink>
                     </li>
                     <li>
                         <NavLink to="/order-book" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
-                            <i class="bi bi-list icon-color"></i> Order Book
+                            <i className="bi bi-list icon-color"></i> Order Book
                         </NavLink>
                     </li>
                     <li>
                         <NavLink to="/completed-orders" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
-                            <i class="bi bi-check-lg icon-color"></i> Completed Orders
+                            <i className="bi bi-check-lg icon-color"></i> Completed Orders
                         </NavLink>
                     </li>
                     <li>
                         <NavLink to="/cancelled-order" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
-                            <i class="bi bi-x icon-color"></i> Cancelled Orders
+                            <i className="bi bi-x icon-color"></i> Cancelled Orders
                         </NavLink>
                     </li>
                     <hr />
                     <li>
                         <NavLink to="/ledger" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
-                            <i class="bi bi-receipt icon-color"></i>    Ledger
+                            <i className="bi bi-receipt icon-color"></i>    Ledger
                         </NavLink>
                     </li>
                     {(role === "vittamoney" || role === "accountant") && (
