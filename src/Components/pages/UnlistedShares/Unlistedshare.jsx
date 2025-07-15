@@ -37,7 +37,6 @@ function Unlistedshare() {
                     Authorization: `Token ${token}`
                 }
             });
-            console.log("API Response:", response.data.data);
             setAllSharesData(response.data.data);
         } catch (error) {
             console.error("Error fetching shares:", error);
@@ -58,7 +57,6 @@ function Unlistedshare() {
                     Authorization: `Token ${token}`
                 }
             });
-            console.log("edit data", response?.data?.data)
             const data = response?.data?.data;
             setEditableData(data)
             setEditFormData({
@@ -81,7 +79,6 @@ function Unlistedshare() {
                 }
             });
 
-            console.log("edited", response.data.statuscode);
 
             // Refresh data
             fetchAllShare(token);

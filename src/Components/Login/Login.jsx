@@ -41,7 +41,6 @@ const Login = () => {
             email: formData.loginEmail,
             password: formData.loginPassword,
         };
-        console.log('Login Payload:', loginData);
 
         try {
             const response = await axios.post(`${loginUrl}login/`, loginData);

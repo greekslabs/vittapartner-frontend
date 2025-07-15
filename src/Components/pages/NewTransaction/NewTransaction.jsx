@@ -218,7 +218,6 @@ function NewTransaction() {
                 }
             })
 
-            console.log("partners", response?.data?.data)
             setPartnersList(response?.data?.data)
 
         } catch (error) {
@@ -430,23 +429,6 @@ function NewTransaction() {
                             )}
                         </div>
 
-                        {/* <div className="col-md-4 mt-3">
-                            <label className='input-label'>CML Copy</label>
-                            <input
-                                type="file"
-                                name="cmlCopy"
-                                id="cmlCopy"
-                                accept=".pdf,image/*"
-                                style={{ display: "none" }}
-                                onChange={handleDPChange}
-                            />
-                            <label htmlFor="cmlCopy" className="upload-box form-control"><i className="bi bi-file-earmark-plus"></i> Click to upload CML copy</label>
-
-                           
-                            {dpDetails.cmlCopy && (
-                                <small className="text-success">📎 {dpDetails.cmlCopy.name}</small>
-                            )}
-                        </div> */}
 
                     </div>
 

@@ -28,7 +28,6 @@ function AppLayout() {
         setRole(storedRole)
         const Token = localStorage.getItem("token")
         setToken(Token)
-        console.log('sa0', Token)
 
     }, [])
 

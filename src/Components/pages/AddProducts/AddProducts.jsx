@@ -48,7 +48,6 @@ function AddProducts() {
             description: formData.description,
         };
 
-        console.log('product payload:', productData);
 
         try {
             const token = localStorage.getItem("token");
@@ -58,7 +57,6 @@ function AddProducts() {
                 }
             });
 
-            console.log(response);
 
             if (response.status === 200 && response.data.statuscode === 201) {
                 setFormData({

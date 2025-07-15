@@ -79,10 +79,7 @@ function Header() {
           </div>
 
 
-          {/* <button className="notification-btn">
-          🔔
-          <span className="notification-badge">1</span>
-        </button> */}
+         
           <div data-bs-toggle="modal" data-bs-target="#staticBackdrop">
             <div className='profile-main'>
               <div className="user-avatar">

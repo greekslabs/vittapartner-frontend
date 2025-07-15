@@ -84,7 +84,6 @@ function OrderBook() {
 
             const data = response?.data?.data?.transactions;
             setDemo(data)
-            console.log("alluserssss", data)
 
             if (Array.isArray(data)) {
                 setAllUsers(data);
@@ -272,7 +271,6 @@ function OrderBook() {
                     }
                 });
 
-                console.log("Transaction cancelled:", response);
 
                 Swal.fire({
                     icon: 'success',

@@ -15,7 +15,7 @@ function Payment() {
     const rowsPerPage = 5;
     const [receiptImageUrl, setReceiptImageUrl] = useState("");
     const [filteredUsers, setFilteredUsers] = useState([]);
-    const [searchInput, setSearchInput] = useState(""); // Added missing searchInput state
+    const [searchInput, setSearchInput] = useState(""); 
 
     useEffect(() => {
         const token = localStorage.getItem("token");
@@ -33,7 +33,6 @@ function Payment() {
                     Authorization: `Token ${token}`
                 }
             });
-            console.log("users", response?.data?.data);
             setFilteredUsers(response?.data?.data);
         } catch (error) {
             console.error("Error fetching users:", error);
@@ -48,7 +47,6 @@ function Payment() {
                     Authorization: `Token ${token}`
                 }
             });
-            console.log("payment-details", res?.data?.data);
             const data = res?.data?.data;
             if (Array.isArray(data)) {
                 setPaymentDetails(res?.data?.data);
@@ -92,7 +90,6 @@ function Payment() {
                     'success'
                 );
 
-                console.log("res", res);
             } catch (error) {
                 Swal.fire(
                     'Error!',
