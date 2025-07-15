@@ -148,14 +148,13 @@
         background-color: #dbeafe;
         color: #1d4ed8;
     }
-
-    /* .bg-blue {
-  background-color: #3b82f6; 
+.save-btn-modal{
+    background: linear-gradient(135deg, #00a54f 0%, #2e368e 100%);
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius:10px;
 }
-
-.bg-green {
-  background-color: #22c55e; 
-} */
 
     .user-icon {
         display: inline-flex;

@@ -459,12 +459,10 @@ const UserManagementSystem = () => {
                             </form>
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">
-                                Close
-                            </button>
+                            
                             <button
                                 type="button"
-                                className="btn btn-primary"
+                                className="save-btn-modal"
                                 onClick={() => handleSave(selectedUsers.id)}
                             >
                                 Save changes
@@ -531,8 +529,7 @@ const UserManagementSystem = () => {
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" onClick={handleResetPAssword}>Save changes</button>
+                            <button type="button"   className="save-btn-modal" onClick={handleResetPAssword}>Save changes</button>
                         </div>
                     </div>
                 </div>

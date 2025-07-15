@@ -267,7 +267,7 @@ function Ledger() {
                                             <td colSpan="2">
                                                  <div className="inline-edit-buttons">
                                                 <button className="save-btn"  onClick={() => handleSaveEdit(data.id)}>Save</button>
-                                                <button className="cancel-btn"  onClick={handleCancelEdit}>Cancel</button>
+                                                <div className="cancel-btn"  onClick={handleCancelEdit}><i class="bi bi-x-circle"></i></div>
                                                 </div>
                                             </td>
                                         </>
@@ -337,7 +337,7 @@ function Ledger() {
                                 <td colSpan="2">
                                      <div className="inline-edit-buttons">
                                     <button className="save-btn" onClick={handleSaveEntry}>Save</button>
-                                    <button className="cancel-btn" onClick={() => setShowNewRow(false)}>Cancel</button>
+                                    <div className="cancel-btn" onClick={() => setShowNewRow(false)}><i class="bi bi-x-circle"></i></div>
                                     </div>
                                 </td>
                             </tr>

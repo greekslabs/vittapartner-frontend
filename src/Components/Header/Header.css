@@ -75,6 +75,24 @@
     font-weight: bold;
     font-size: 0.9rem;
 }
+.user-avatar-profile{
+     background: linear-gradient(135deg, #00a54f 0%, #2e368e 100%);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 0.9rem;
+    justify-self: center;
+    width: 59px;
+    height: 57px;
+    border-radius: 50%;
+    background-color: rgb(13, 110, 253);
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    font-weight: 600;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 4px 10px;
+
+}
 
 .logout-btn {
     background: linear-gradient(135deg, #00a54f 0%, #2e368e 100%);

@@ -302,8 +302,7 @@ const handleDelete = async (id) => {
 
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" onClick={() => handleSaveEdit(editableData.id)}>Save changes</button>
+                                <button type="button"  className="save-btn-modal"  onClick={() => handleSaveEdit(editableData.id)}>Save changes</button>
                             </div>
                         </div>
                     </div>

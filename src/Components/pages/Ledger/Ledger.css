@@ -13,7 +13,7 @@
 }
 
 .inline-edit-buttons .save-btn {
-    background-color: #28a745;
+    background: linear-gradient(135deg, #00a54f 0%, #2e368e 100%);
     color: white;
 }
 
@@ -22,13 +22,11 @@
 }
 
 .inline-edit-buttons .cancel-btn {
-    background-color: #dc3545;
-    color: white;
+    /* background-color: #dc3545; */
+    color: #dc3545;
+    padding: 5px 10px;
 }
 
-.inline-edit-buttons .cancel-btn:hover {
-    background-color: #c82333;
-}
 
 
 .custom-pagination {

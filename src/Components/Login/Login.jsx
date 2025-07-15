@@ -7,7 +7,7 @@ import { useAuth } from '../../Auth';
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
-    
+
     const navigate = useNavigate();
     const loginUrl = import.meta.env.VITE_API_LOGIN_URL;
     const { isAuthenticated, login } = useAuth();
@@ -17,11 +17,11 @@ const Login = () => {
         loginPassword: '',
     });
     useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-        navigate('/dashboard');
-    }
-}, []);
+        const token = localStorage.getItem("token");
+        if (token) {
+            navigate('/dashboard');
+        }
+    }, []);
 
 
     const handleChange = (e) => {
@@ -47,7 +47,7 @@ const Login = () => {
             const response = await axios.post(`${loginUrl}login/`, loginData);
 
             if (response.status === 200) {
-                 window.location.href = "/dashboard"; 
+                window.location.href = "/dashboard";
                 const user = response.data.data.user;
                 const role = user.role;
 
@@ -56,6 +56,7 @@ const Login = () => {
                 localStorage.setItem("token", response.data.data.token);
                 localStorage.setItem("username", user.username);
                 localStorage.setItem("phone", user.phone);
+                localStorage.setItem("email", user.email);
 
                 if (user.employee_id) {
                     localStorage.setItem("employee_id", user.employee_id);
