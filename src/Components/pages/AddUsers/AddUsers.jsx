@@ -14,7 +14,26 @@ const UserManagementSystem = () => {
     const [role, setRole] = useState('');
     const [selectedRole, setSelectedRole] = useState('partner');
     const [currentPage, setCurrentPage] = useState(1);
+    const [resetPasswordUserId, setResetPasswordUserId] = useState(0);
     const usersPerPage = 5;
+    const [resetForm, setResetForm] = useState({
+        password: '',
+        confirmPassword: '',
+        showPassword: false,
+        showConfirmPassword: false,
+    });
+
+    const closeRef = useRef();
+
+
+    const togglePasswordVisibility = (field) => {
+        setResetForm((prev) => ({
+            ...prev,
+            [field]: !prev[field],
+        }));
+    };
+
+
 
     const apiUrl = import.meta.env.VITE_API_LOGIN_URL;
     const navigate = useNavigate();
@@ -168,6 +187,62 @@ const UserManagementSystem = () => {
     const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
     const totalPages = Math.ceil(users.length / usersPerPage);
 
+
+    // reset password
+    const handleResetPasswordId = async (id) => {
+        setResetPasswordUserId(id)
+
+
+    }
+
+    const handleResetPAssword = async () => {
+        const { password, confirmPassword } = resetForm;
+
+        if (!password || !confirmPassword) {
+            Swal.fire('Error', 'Please fill both fields.', 'error');
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            Swal.fire('Error', 'Passwords do not match.', 'error');
+            return;
+        }
+
+        try {
+            const response = await axios.post(
+                `${apiUrl}reset-password/${resetPasswordUserId}/`,
+                {
+                    password: password,
+                    confirm_password: confirmPassword
+                },
+                {
+                    headers: {
+                        Authorization: `Token ${token}`,
+                    },
+                }
+            );
+
+            if (response.status === 200) {
+                Swal.fire('Success', 'Password reset successfully!', 'success');
+                setResetForm({
+                    password: '',
+                    confirmPassword: '',
+                    showPassword: false,
+                    showConfirmPassword: false,
+
+                })
+                closeRef.current?.click();
+
+            } else {
+                Swal.fire('Error', 'Unexpected response from server.', 'error');
+            }
+        } catch (error) {
+            Swal.fire('Error', 'Something went wrong while resetting the password.', 'error');
+            console.error(error);
+        }
+    };
+
+
     return (
         <div className="container">
             <header className="header-adduser">
@@ -228,10 +303,10 @@ const UserManagementSystem = () => {
                                     {selectedRole === 'partner'
                                         ? 'PARTNER ID'
                                         : selectedRole === 'vittamoney_user'
-                                        ? 'EMPLOYEE ID'
-                                        : selectedRole === 'accountant'
-                                        ? 'ACCOUNTANT ID'
-                                        : ''}
+                                            ? 'EMPLOYEE ID'
+                                            : selectedRole === 'accountant'
+                                                ? 'ACCOUNTANT ID'
+                                                : ''}
                                 </th>
                                 <th>ACTIONS</th>
                                 <th>RESET PASSWORD</th>
@@ -243,19 +318,19 @@ const UserManagementSystem = () => {
                                     <td>{indexOfFirstUser + index + 1}</td>
                                     <td>
                                         <div className="user-info">
-                                            {user.role!=="partner" ?(
-                                                 <div className="user-icon">
-                                                
-                                                <i className="bi bi-shield"></i>
-                                            </div>
-                                            ):(
-                                                 <div className="user-icon-partner">
-                                                
-                                               <i class="bi bi-person-check"></i>
-                                            </div>
+                                            {user.role !== "partner" ? (
+                                                <div className="user-icon">
+
+                                                    <i className="bi bi-shield"></i>
+                                                </div>
+                                            ) : (
+                                                <div className="user-icon-partner">
+
+                                                    <i class="bi bi-person-check"></i>
+                                                </div>
 
                                             )}
-                                           
+
                                             <div className="user-details">
                                                 <div className="user-name">{user.username}</div>
                                                 <div className="user-role">{user.role}</div>
@@ -263,18 +338,18 @@ const UserManagementSystem = () => {
                                         </div>
                                     </td>
                                     <td>
-                                        {user.role!=="partner" ?(
-                                             <span className="partner-id blue-badge">
-                                            {user.partner_id || user.employee_id || user.accountant_id}
-                                        </span>
+                                        {user.role !== "partner" ? (
+                                            <span className="partner-id blue-badge">
+                                                {user.partner_id || user.employee_id || user.accountant_id}
+                                            </span>
 
-                                        ):(
-                                             <span className="partner-id green-badge">
-                                            {user.partner_id || user.employee_id || user.accountant_id}
-                                        </span>
+                                        ) : (
+                                            <span className="partner-id green-badge">
+                                                {user.partner_id || user.employee_id || user.accountant_id}
+                                            </span>
 
                                         )}
-                                       
+
                                     </td>
                                     <td>
                                         <div className="actions">
@@ -294,44 +369,44 @@ const UserManagementSystem = () => {
                                             </button>
                                         </div>
                                     </td>
-                                    <td><i class="bi bi-unlock2 reset-pswrd"></i></td>
+                                    <td data-bs-toggle="modal" data-bs-target="#resetModal" onClick={() => handleResetPasswordId(user.id)}><i class="bi bi-unlock2 reset-pswrd"></i></td>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
 
-                   
-                </div>
-                
-            </div>
-             {/* Pagination */}
-                    <div className="pagination">
-                        <button
-                            className="pagination-btn"
-                            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-                            disabled={currentPage === 1}
-                        >
-                            ←
-                        </button>
-                        {Array.from({ length: totalPages }, (_, i) => (
-                            <button
-                                key={i}
-                                className={`pagination-btn ${currentPage === i + 1 ? 'active' : ''}`}
-                                onClick={() => setCurrentPage(i + 1)}
-                            >
-                                {i + 1}
-                            </button>
-                        ))}
-                        <button
-                            className="pagination-btn"
-                            onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
-                            disabled={currentPage === totalPages}
-                        >
-                            →
-                        </button>
-                    </div>
 
-            {/* MODAL — same as your code */}
+                </div>
+
+            </div>
+            {/* Pagination */}
+            <div className="pagination">
+                <button
+                    className="pagination-btn"
+                    onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                    disabled={currentPage === 1}
+                >
+                    ←
+                </button>
+                {Array.from({ length: totalPages }, (_, i) => (
+                    <button
+                        key={i}
+                        className={`pagination-btn ${currentPage === i + 1 ? 'active' : ''}`}
+                        onClick={() => setCurrentPage(i + 1)}
+                    >
+                        {i + 1}
+                    </button>
+                ))}
+                <button
+                    className="pagination-btn"
+                    onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+                    disabled={currentPage === totalPages}
+                >
+                    →
+                </button>
+            </div>
+
+            {/* user edit */}
             <div className="modal fade" id="exampleModal" tabIndex="-1" aria-hidden="true" ref={modalRef}>
                 <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content">
@@ -394,6 +469,70 @@ const UserManagementSystem = () => {
                             >
                                 Save changes
                             </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* reset password */}
+
+            <div class="modal fade" id="resetModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Reset Password</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ref={closeRef}></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div className="mb-3 position-relative">
+                                    <label className="form-label">Password</label>
+                                    <div className="input-group">
+                                        <input
+                                            type={resetForm.showPassword ? 'text' : 'password'}
+                                            className="form-control"
+                                            value={resetForm.password}
+                                            onChange={(e) =>
+                                                setResetForm({ ...resetForm, password: e.target.value })
+                                            }
+                                        />
+                                        <span
+                                            className="input-group-text"
+                                            style={{ cursor: 'pointer' }}
+                                            onClick={() => togglePasswordVisibility('showPassword')}
+                                        >
+                                            <i className={`bi ${resetForm.showPassword ? 'bi-eye-slash' : 'bi-eye'}`}></i>
+                                        </span>
+                                    </div>
+
+                                    <label className="form-label mt-2">Confirm Password</label>
+                                    <div className="input-group">
+                                        <input
+                                            type={resetForm.showConfirmPassword ? 'text' : 'password'}
+                                            className="form-control"
+                                            value={resetForm.confirmPassword}
+                                            onChange={(e) =>
+                                                setResetForm({ ...resetForm, confirmPassword: e.target.value })
+                                            }
+                                        />
+                                        <span
+                                            className="input-group-text"
+                                            style={{ cursor: 'pointer' }}
+                                            onClick={() => togglePasswordVisibility('showConfirmPassword')}
+                                        >
+                                            <i className={`bi ${resetForm.showConfirmPassword ? 'bi-eye-slash' : 'bi-eye'}`}></i>
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </form>
+
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" onClick={handleResetPAssword}>Save changes</button>
                         </div>
                     </div>
                 </div>
